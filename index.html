@@ -222,8 +222,8 @@
             let totalScreed = area * 0.3;
             let filler = (2/3)*totalScreed;
             let epoxy = (1/3)*totalScreed;
-            let screedResin = (2/3)*epoxy;
-            let screedHardener = (1/3)*epoxy;
+            let screedResin = (3/4)*epoxy;
+            let screedHardener = (1/4)*epoxy;
 
             // Update the values in the HTML
             document.getElementById("screedValue").innerText = `Total Screed: ${totalScreed.toFixed(2)} Kg`;
@@ -237,8 +237,8 @@
         function calculateEpoxyTopcoat() {
             let area = actualArea();
             let totalEpoxy = area * 0.125;
-            let epoxyHardener = (1/5) * totalEpoxy;
-            let epoxyPartA = (4/5) * totalEpoxy;
+            let epoxyHardener = (1/4) * totalEpoxy;
+            let epoxyPartA = (3/4) * totalEpoxy; // raisn
             let epoxyResin = 0.5 * epoxyPartA;
             let epoxyFiller = 0.5 * epoxyPartA;
 
@@ -253,8 +253,8 @@
         function calculateEpoxyMetallic() {
             let area = actualArea();
             let totalEpoxyMetallic = area * 0.1;
-            let resinEpoxyMetallic = (2/3) * totalEpoxyMetallic;
-            let hardenerEpoxyMetallic = (1/3) * totalEpoxyMetallic; // Correcting your previous reference to totalEpoxy
+            let resinEpoxyMetallic = (3/4) * totalEpoxyMetallic;
+            let hardenerEpoxyMetallic = (1/4) * totalEpoxyMetallic; // Correcting your previous reference to totalEpoxy
 
             // Update the values in the HTML
             document.getElementById("totalEpoxyMetallicValue").innerText = `Total Epoxy Metallic: ${totalEpoxyMetallic.toFixed(2)} Kg`;
