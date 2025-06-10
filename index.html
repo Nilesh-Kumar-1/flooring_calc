@@ -145,8 +145,8 @@
                     <p id="totalEpoxyValue">Total Epoxy: -- Kg</p>
                     <p id="epoxyHardenerValue">Epoxy Hardener: -- Kg</p>
                     <p id="epoxyPartAValue">Epoxy Part A: -- Kg</p>
-                    <p id="epoxyResinValue">Epoxy Resin: -- Kg</p>
-                    <p id="epoxyFillerValue">Epoxy Filler: -- Kg</p>
+                    <!-- <p id="epoxyResinValue">Epoxy Resin: -- Kg</p>
+                    <p id="epoxyFillerValue">Epoxy Filler: -- Kg</p> -->
                 </div>
             </div>
 
@@ -244,10 +244,10 @@
 
             // Update the values in the HTML
             document.getElementById("totalEpoxyValue").innerText = `Total Epoxy: ${totalEpoxy.toFixed(2)} Kg`;
-            document.getElementById("epoxyHardenerValue").innerText = `Epoxy Hardener: ${epoxyHardener.toFixed(2)} Kg`;
-            document.getElementById("epoxyPartAValue").innerText = `Epoxy Part A: ${epoxyPartA.toFixed(2)} Kg`;
-            document.getElementById("epoxyResinValue").innerText = `Epoxy Resin: ${epoxyResin.toFixed(2)} Kg`;
-            document.getElementById("epoxyFillerValue").innerText = `Epoxy Filler: ${epoxyFiller.toFixed(2)} Kg`;
+            document.getElementById("epoxyHardenerValue").innerText = `Epoxy Part B Hardener: ${epoxyHardener.toFixed(2)} Kg`;
+            document.getElementById("epoxyPartAValue").innerText = `Epoxy Part A Rasin: ${epoxyPartA.toFixed(2)} Kg`;
+            // document.getElementById("epoxyResinValue").innerText = `Epoxy Resin: ${epoxyResin.toFixed(2)} Kg`;
+            // document.getElementById("epoxyFillerValue").innerText = `Epoxy Filler: ${epoxyFiller.toFixed(2)} Kg`;
         }
 
         function calculateEpoxyMetallic() {
