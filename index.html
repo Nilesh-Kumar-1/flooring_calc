@@ -1,96 +1,156 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flooring Calculator</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-            max-width: 90%;
-            margin: auto;
-        }
-        h2 {
-            color: #007bff;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .grid-item {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: 0.3s;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .result {
-            margin-top: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 10px;
-            background: #e9f5ff;
-            border-radius: 5px;
-        }
-        @media (max-width: 768px) {
-            .grid-container {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-        }
-        @media (max-width: 500px) {
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-            .container {
-                padding: 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flooring Calculator</title>
+  <style>
+    /* Base Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f2f5;
+      color: #2c3e50;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #1e90ff;
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+
+    /* Label & Input Styling */
+    label {
+      font-weight: 600;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 12px 10px 6px 0;
+      text-align: left;
+      color: #34495e;
+    }
+
+    input, select {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      padding: 10px 14px;
+      font-size: 15px;
+      border: 1px solid #dcdde1;
+      border-radius: 6px;
+      background-color: #fdfdfd;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input {
+      max-width: 300px;
+      width: 100%;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    input:focus, select:focus {
+      border-color: #1e90ff;
+      box-shadow: 0 0 5px rgba(30, 144, 255, 0.3);
+      outline: none;
+    }
+
+    /* Buttons */
+    button {
+      background-color: #1e90ff;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #0d6efd;
+      transform: scale(1.02);
+    }
+
+    /* Result Box */
+    .result {
+      background-color: #eaf6ff;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-top: 10px;
+      text-align: left;
+      border-left: 4px solid #1e90ff;
+    }
+
+    /* Grid Layout */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .grid-item {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Inline Input Box */
+    .inline-input {
+      max-width: 300px;
+      width: 40%;
+      text-align: center;
+    }
+
+    .option-box {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
 
     <div class="container">
         <h2>Flooring Calculator</h2>
-         <div class="option-box">
+        <div class="option-box">
             <label>Do you know the actual area?</label>
             <select id="knowArea" onchange="toggleInputs()">
                 <option value="no">No</option>
                 <option value="yes">Yes</option>
             </select>
         </div>
+        <br>
+        <br>
+        <br>
 
         <div id="areaInputs">
             <label>Enter Area (sq. ft):</label>
@@ -120,6 +180,10 @@
 
         <div class="grid-container">
             <div class="grid-item">
+                <form id="ratioForm">
+                    <label for="primerRatioInput">Enter Primer Ratio:</label>
+                    <input class="inline-input" type="text" id="primerRatioInput" name="ratio" value = "2:1" placeholder="resin : hardener e.g. 2:1">
+                </form>
                 <button onclick="primer()">Epoxy Primer</button>
                 <div class="result">
                     <p id="primerValue">Total Primer: -- Kg</p>
@@ -129,6 +193,12 @@
             </div>
 
             <div class="grid-item">
+                <form id="ratioForm">
+                    <label for="screedRatioInput">Enter Screed Ratio:</label>
+                    <input class="inline-input" type="text" id="screedRatioInput" name="ratio" value = "2:1" placeholder="filler : epoxy e.g. 2:1">
+                    <label for="screedEpoxyRatioInput">Enter Screed Ratio for Epoxy:</label>
+                    <input class="inline-input" type="text" id="screedEpoxyRatioInput" name="ratio" value = "2:1" placeholder="resin : hardener e.g. 2:1">
+                </form>
                 <button onclick="Screed()">Epoxy Screed</button>
                 <div class="result">
                     <p id="screedValue">Total Screed: -- Kg</p>
@@ -140,17 +210,23 @@
             </div>
 
             <div class="grid-item">
+                <form id="ratioForm">
+                    <label for="topcoatRatioInput">Enter Topcoat Ratio:</label>
+                    <input class="inline-input" type="text" id="topcoatRatioInput" name="ratio" value = "4:1" placeholder="filler : epoxy e.g. 4:1">
+                </form>
                 <button onclick="calculateEpoxyTopcoat()">Epoxy Topcoat</button>
                 <div class="result">
                     <p id="totalEpoxyValue">Total Epoxy: -- Kg</p>
                     <p id="epoxyHardenerValue">Epoxy Hardener: -- Kg</p>
                     <p id="epoxyPartAValue">Epoxy Part A: -- Kg</p>
-                    <!-- <p id="epoxyResinValue">Epoxy Resin: -- Kg</p>
-                    <p id="epoxyFillerValue">Epoxy Filler: -- Kg</p> -->
                 </div>
             </div>
 
             <div class="grid-item">
+                <form id="ratioForm">
+                    <label for="metallicRatioInput">Enter Topcoat Ratio:</label>
+                    <input class="inline-input" type="text" id="metallicRatioInput" name="ratio" value = "2:1" placeholder="resin : hardener e.g. 2:1">
+                </form>
                 <button onclick="calculateEpoxyMetallic()">Epoxy Metallic</button>
                 <div class="result">
                     <p id="totalEpoxyMetallicValue">Total Epoxy Metallic: -- Kg</p>
@@ -158,6 +234,43 @@
                     <p id="hardenerEpoxyMetallicValue">Hardener Epoxy Metallic: -- Kg</p>
                 </div>
             </div>
+
+            <div class="grid-item">
+                <form id="ratioForm">
+                    <label for="PURatioInput">Enter PU Ratio:</label>
+                    <input class="inline-input" type="text" id="PURatioInput" name="ratio" value = "2:1" placeholder="filler : Epoxy e.g. 2:1">
+                    <label for="puEpoxyRatioInput">Enter PU Ratio for Epoxy:</label>
+                    <input class="inline-input" type="text" id="puEpoxyRatioInput" name="ratio" value = "1:1" placeholder="resin : hardener e.g. 1:1">
+                </form>
+                <button onclick="calculateEpoxyPU()">PU Concrete Flooring 1st coat</button>
+                <div class="result">
+                    <p id="totalPUValue">Total PU: -- Kg</p>
+                    <p id="fillerPUValue">Filler for PU: -- Kg</p>
+                    <p id="EpoxyPUValue">Epoxy for PU: -- Kg</p>
+                    <p id="EpoxyHardenerPUValue">Hardener for PU: -- Kg</p>
+                    <p id="EpoxyResinPUValue">Resin for PU: -- Kg</p>
+                    
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <form id="ratioForm">
+                    <label for="PURatioInput2coat">Enter PU Ratio for 2nd coat:</label>
+                    <input class="inline-input" type="text" id="PURatioInput2coat" name="ratio" value = "2:1" placeholder="filler : Epoxy e.g. 2:1">
+                    <label for="puEpoxyRatioInput2coat">Enter PU Ratio for Epoxy for 2nd coat:</label>
+                    <input class="inline-input" type="text" id="puEpoxyRatioInput2coat" name="ratio" value = "1:1" placeholder="resin : hardener e.g. 1:1">
+                </form>
+                <button onclick="calculateEpoxyPU2coat()">PU Concrete Flooring 2nd coat</button>
+                <div class="result">
+                    <p id="totalPUValue2coat">Total PU: -- Kg</p>
+                    <p id="fillerPUValue2coat">Filler for PU: -- Kg</p>
+                    <p id="EpoxyPUValue2coat">Epoxy for PU: -- Kg</p>
+                    <p id="EpoxyHardenerPUValue2coat">Hardener for PU: -- Kg</p>
+                    <p id="EpoxyResinPUValue2coat">Resin for PU: -- Kg</p>
+                    
+                </div>
+            </div>
+
         </div>
     </div>
     <script>
@@ -206,10 +319,15 @@
 
         function primer(){
             let area = actualArea();
-            console.log(area)
+            input = document.getElementById("primerRatioInput").value.trim();
+            const parts = input.split(":");
+            let resinPart = parts[0];
+            let hardenerPart = parts[1];
+
             let totalPrimer = area * 0.015;
-            let resin = (2/3)*totalPrimer;
-            let hardener = (1/3)*totalPrimer;
+            let resin = (resinPart/(resinPart + hardenerPart))*totalPrimer;
+            let hardener = (hardenerPart/(resinPart + hardenerPart))*totalPrimer;
+            // console.log(resinPart/(resinPart + hardenerPart),hardenerPart/(resinPart + hardenerPart))
 
             document.getElementById("primerValue").innerText = `Total Primer: ${totalPrimer.toFixed(2)} Kg`;
             document.getElementById("resinValue").innerText = `Resin: ${resin.toFixed(2)} Kg`;
@@ -219,11 +337,22 @@
 
         function Screed(){
             let area = actualArea();
+            input = document.getElementById("primerRatioInput").value.trim();
+            screedExpoxyInput = document.getElementById("screedEpoxyRatioInput").value.trim();
+            const parts = input.split(":");
+            const screedExpoxyInputparts = input.split(":");
+
+            let fillerPart = parts[0];
+            let epoxyPart = parts[1];
+            let screedResinPart = screedExpoxyInputparts[0];
+            let screedHardenerPart = screedExpoxyInputparts[1];
+
+
             let totalScreed = area * 0.3;
-            let filler = (2/3)*totalScreed;
-            let epoxy = (1/3)*totalScreed;
-            let screedResin = (3/4)*epoxy;
-            let screedHardener = (1/4)*epoxy;
+            let filler = (fillerPart/(fillerPart + epoxyPart))*totalScreed;
+            let epoxy = (epoxyPart/(fillerPart + epoxyPart))*totalScreed;
+            let screedResin = (screedResinPart/(screedHardenerPart + screedResinPart))*epoxy;
+            let screedHardener = (screedHardenerPart/(screedHardenerPart + screedResinPart))*epoxy;
 
             // Update the values in the HTML
             document.getElementById("screedValue").innerText = `Total Screed: ${totalScreed.toFixed(2)} Kg`;
@@ -236,9 +365,15 @@
 
         function calculateEpoxyTopcoat() {
             let area = actualArea();
+            screedExpoxyInput = document.getElementById("topcoatRatioInput").value.trim();
+            const parts = input.split(":");
+
+            let partATopPart = parts[0];
+            let hardenerTopCoatPart = parts[1];
+
             let totalEpoxy = area * 0.125;
-            let epoxyHardener = (1/4) * totalEpoxy;
-            let epoxyPartA = (3/4) * totalEpoxy; // raisn
+            let epoxyHardener = (hardenerTopCoatPart/(hardenerTopCoatPart + partATopPart)) * totalEpoxy;
+            let epoxyPartA = (partATopPart/(hardenerTopCoatPart + partATopPart)) * totalEpoxy; // raisn
             let epoxyResin = 0.5 * epoxyPartA;
             let epoxyFiller = 0.5 * epoxyPartA;
 
@@ -252,14 +387,71 @@
 
         function calculateEpoxyMetallic() {
             let area = actualArea();
+            screedExpoxyInput = document.getElementById("metallicRatioInput").value.trim();
+            const parts = input.split(":");
+
+            let partAMetallic = parts[0];
+            let hardenerMetallic = parts[1];
+
             let totalEpoxyMetallic = area * 0.1;
-            let resinEpoxyMetallic = (3/4) * totalEpoxyMetallic;
-            let hardenerEpoxyMetallic = (1/4) * totalEpoxyMetallic; // Correcting your previous reference to totalEpoxy
+            let resinEpoxyMetallic = (partAMetallic/(hardenerMetallic + partAMetallic)) * totalEpoxyMetallic;
+            let hardenerEpoxyMetallic = (hardenerMetallic/(hardenerMetallic + partAMetallic)) * totalEpoxyMetallic; // Correcting your previous reference to totalEpoxy
 
             // Update the values in the HTML
             document.getElementById("totalEpoxyMetallicValue").innerText = `Total Epoxy Metallic: ${totalEpoxyMetallic.toFixed(2)} Kg`;
             document.getElementById("resinEpoxyMetallicValue").innerText = `Resin Epoxy Metallic: ${resinEpoxyMetallic.toFixed(2)} Kg`;
             document.getElementById("hardenerEpoxyMetallicValue").innerText = `Hardener Epoxy Metallic: ${hardenerEpoxyMetallic.toFixed(2)} Kg`;
+        }
+        function calculateEpoxyPU() {
+            let area = actualArea();
+            PUInput = document.getElementById("PURatioInput").value.trim();
+            const parts = input.split(":");
+            PUExpoxyInput = document.getElementById("puEpoxyRatioInput").value.trim();
+            const PUExpoxyparts = input.split(":");
+
+            let fillerPUPart = parts[0];
+            let epoxyPUPart = parts[1];
+            let epoxyresinPUPart = PUExpoxyparts[0];
+            let epoxyhardnerPUPart = PUExpoxyparts[1];
+
+            let totalPU = area * 0.2;
+            let fillerPU = (fillerPUPart/(epoxyPUPart + fillerPUPart)) * totalPU;
+            let EpoxyPU = (epoxyPUPart/(epoxyPUPart + fillerPUPart)) * totalPU;
+            let hardenerEpoxyPU = (epoxyhardnerPUPart/(epoxyresinPUPart + epoxyhardnerPUPart)) * EpoxyPU; // Correcting your previous reference to totalEpoxy
+            let resinEpoxyPU = (epoxyresinPUPart/(epoxyresinPUPart + epoxyhardnerPUPart)) * EpoxyPU; // Correcting your previous reference to totalEpoxy
+
+            // Update the values in the HTML
+            document.getElementById("totalPUValue").innerText = `Total PU: ${totalPU.toFixed(2)} Kg`;
+            document.getElementById("fillerPUValue").innerText = `Total filler for PU: ${fillerPU.toFixed(2)} Kg`;
+            document.getElementById("EpoxyPUValue").innerText = `Total Epoxy for PU: ${EpoxyPU.toFixed(2)} Kg`;
+            document.getElementById("EpoxyResinPUValue").innerText = `Total Resin for Epoxy PU: ${resinEpoxyPU.toFixed(2)} Kg`;
+            document.getElementById("EpoxyHardnerPUValue").innerText = `Total Hardner for Epoxy PU: ${hardenerEpoxyPU.toFixed(2)} Kg`;
+        }
+
+        function calculateEpoxyPU2coat() {
+            let area = actualArea();
+            PUInput = document.getElementById("PURatioInput2coat").value.trim();
+            const parts2coat = input.split(":");
+            PUExpoxyInput = document.getElementById("puEpoxyRatioInput2coat").value.trim();
+            const PUExpoxyparts2coat = input.split(":");
+
+            let fillerPUPart2coat = parts2coat[0];
+            let epoxyPUPart2coat = parts2coat[1];
+            let epoxyresinPUPart2coat = PUExpoxyparts2coat[0];
+            let epoxyhardnerPUPart2coat = PUExpoxyparts2coat[1];
+
+            let totalPU2coat = area * 0.6;
+            let fillerPU2coat = (fillerPUPart2coat/(epoxyPUPart2coat + fillerPUPart2coat)) * totalPU2coat;
+            let EpoxyPU2coat = (epoxyPUPart2coat/(epoxyPUPart2coat + fillerPUPart2coat)) * totalPU2coat;
+            let hardenerEpoxyPU2coat = (epoxyhardnerPUPart2coat/(epoxyresinPUPart2coat + epoxyhardnerPUPart2coat)) * EpoxyPU2coat; // Correcting your previous reference to totalEpoxy
+            let resinEpoxyPU2coat = (epoxyresinPUPart2coat/(epoxyresinPUPart2coat + epoxyhardnerPUPart2coat)) * EpoxyPU2coat; // Correcting your previous reference to totalEpoxy
+
+            // Update the values in the HTML
+            document.getElementById("totalPUValue2coat").innerText = `Total PU: ${totalPU.toFixed(2)} Kg`;
+            document.getElementById("fillerPUValue2coat").innerText = `Total filler for PU: ${fillerPU.toFixed(2)} Kg`;
+            document.getElementById("EpoxyPUValue2coat").innerText = `Total Epoxy for PU: ${EpoxyPU.toFixed(2)} Kg`;
+            document.getElementById("EpoxyResinPUValue2coat").innerText = `Total Resin for Epoxy PU: ${resinEpoxyPU.toFixed(2)} Kg`;
+            document.getElementById("EpoxyHardnerPUValue2coat").innerText = `Total Hardner for Epoxy PU: ${hardenerEpoxyPU.toFixed(2)} Kg`;
         }
     </script>
 
