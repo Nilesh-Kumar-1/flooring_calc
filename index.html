@@ -321,8 +321,8 @@
             let area = actualArea();
             input = document.getElementById("primerRatioInput").value.trim();
             const parts = input.split(":");
-            let resinPart = parts[0];
-            let hardenerPart = parts[1];
+            let resinPart = parseInt(parts[0]);
+            let hardenerPart = parseInt(parts[1]);
 
             let totalPrimer = area * 0.015;
             let resin = (resinPart/(resinPart + hardenerPart))*totalPrimer;
@@ -340,12 +340,14 @@
             input = document.getElementById("primerRatioInput").value.trim();
             screedExpoxyInput = document.getElementById("screedEpoxyRatioInput").value.trim();
             const parts = input.split(":");
-            const screedExpoxyInputparts = input.split(":");
+            const screedExpoxyInputparts = screedExpoxyInput.split(":");
 
-            let fillerPart = parts[0];
-            let epoxyPart = parts[1];
-            let screedResinPart = screedExpoxyInputparts[0];
-            let screedHardenerPart = screedExpoxyInputparts[1];
+            let fillerPart = parseInt(parts[0]);
+            let epoxyPart = parseInt(parts[1]);
+            let screedResinPart = parseInt(screedExpoxyInputparts[0]);
+            let screedHardenerPart = parseInt(screedExpoxyInputparts[1]);
+
+            console.log(parts, (fillerPart/(fillerPart + epoxyPart)),(epoxyPart/(fillerPart + epoxyPart)), fillerPart, epoxyPart,2/3,'2'/('2'+'3'))
 
 
             let totalScreed = area * 0.3;
@@ -368,8 +370,8 @@
             screedExpoxyInput = document.getElementById("topcoatRatioInput").value.trim();
             const parts = input.split(":");
 
-            let partATopPart = parts[0];
-            let hardenerTopCoatPart = parts[1];
+            let partATopPart = parseInt(parts[0]);
+            let hardenerTopCoatPart = parseInt(parts[1]);
 
             let totalEpoxy = area * 0.125;
             let epoxyHardener = (hardenerTopCoatPart/(hardenerTopCoatPart + partATopPart)) * totalEpoxy;
@@ -390,8 +392,8 @@
             screedExpoxyInput = document.getElementById("metallicRatioInput").value.trim();
             const parts = input.split(":");
 
-            let partAMetallic = parts[0];
-            let hardenerMetallic = parts[1];
+            let partAMetallic = parseInt(parts[0]);
+            let hardenerMetallic = parseInt(parts[1]);
 
             let totalEpoxyMetallic = area * 0.1;
             let resinEpoxyMetallic = (partAMetallic/(hardenerMetallic + partAMetallic)) * totalEpoxyMetallic;
@@ -409,23 +411,23 @@
             PUExpoxyInput = document.getElementById("puEpoxyRatioInput").value.trim();
             const PUExpoxyparts = input.split(":");
 
-            let fillerPUPart = parts[0];
-            let epoxyPUPart = parts[1];
-            let epoxyresinPUPart = PUExpoxyparts[0];
-            let epoxyhardnerPUPart = PUExpoxyparts[1];
+            let fillerPUPart = parseInt(parts[0]);
+            let epoxyPUPart = parseInt(parts[1]);
+            let epoxyresinPUPart = parseInt(PUExpoxyparts[0]);
+            let epoxyhardnerPUPart = parseInt(PUExpoxyparts[1]);
 
             let totalPU = area * 0.2;
             let fillerPU = (fillerPUPart/(epoxyPUPart + fillerPUPart)) * totalPU;
             let EpoxyPU = (epoxyPUPart/(epoxyPUPart + fillerPUPart)) * totalPU;
             let hardenerEpoxyPU = (epoxyhardnerPUPart/(epoxyresinPUPart + epoxyhardnerPUPart)) * EpoxyPU; // Correcting your previous reference to totalEpoxy
             let resinEpoxyPU = (epoxyresinPUPart/(epoxyresinPUPart + epoxyhardnerPUPart)) * EpoxyPU; // Correcting your previous reference to totalEpoxy
-
+            console.log(hardenerEpoxyPU)
             // Update the values in the HTML
             document.getElementById("totalPUValue").innerText = `Total PU: ${totalPU.toFixed(2)} Kg`;
             document.getElementById("fillerPUValue").innerText = `Total filler for PU: ${fillerPU.toFixed(2)} Kg`;
             document.getElementById("EpoxyPUValue").innerText = `Total Epoxy for PU: ${EpoxyPU.toFixed(2)} Kg`;
             document.getElementById("EpoxyResinPUValue").innerText = `Total Resin for Epoxy PU: ${resinEpoxyPU.toFixed(2)} Kg`;
-            document.getElementById("EpoxyHardnerPUValue").innerText = `Total Hardner for Epoxy PU: ${hardenerEpoxyPU.toFixed(2)} Kg`;
+            document.getElementById("EpoxyHardenerPUValue").innerText = `Total Hardner for Epoxy PU: ${hardenerEpoxyPU.toFixed(2)} Kg`;
         }
 
         function calculateEpoxyPU2coat() {
@@ -435,10 +437,10 @@
             PUExpoxyInput = document.getElementById("puEpoxyRatioInput2coat").value.trim();
             const PUExpoxyparts2coat = input.split(":");
 
-            let fillerPUPart2coat = parts2coat[0];
-            let epoxyPUPart2coat = parts2coat[1];
-            let epoxyresinPUPart2coat = PUExpoxyparts2coat[0];
-            let epoxyhardnerPUPart2coat = PUExpoxyparts2coat[1];
+            let fillerPUPart2coat = parseInt(parts2coat[0]);
+            let epoxyPUPart2coat = parseInt(parts2coat[1]);
+            let epoxyresinPUPart2coat = parseInt(PUExpoxyparts2coat[0]);
+            let epoxyhardnerPUPart2coat = parseInt(PUExpoxyparts2coat[1]);
 
             let totalPU2coat = area * 0.6;
             let fillerPU2coat = (fillerPUPart2coat/(epoxyPUPart2coat + fillerPUPart2coat)) * totalPU2coat;
@@ -447,11 +449,11 @@
             let resinEpoxyPU2coat = (epoxyresinPUPart2coat/(epoxyresinPUPart2coat + epoxyhardnerPUPart2coat)) * EpoxyPU2coat; // Correcting your previous reference to totalEpoxy
 
             // Update the values in the HTML
-            document.getElementById("totalPUValue2coat").innerText = `Total PU: ${totalPU.toFixed(2)} Kg`;
-            document.getElementById("fillerPUValue2coat").innerText = `Total filler for PU: ${fillerPU.toFixed(2)} Kg`;
-            document.getElementById("EpoxyPUValue2coat").innerText = `Total Epoxy for PU: ${EpoxyPU.toFixed(2)} Kg`;
-            document.getElementById("EpoxyResinPUValue2coat").innerText = `Total Resin for Epoxy PU: ${resinEpoxyPU.toFixed(2)} Kg`;
-            document.getElementById("EpoxyHardnerPUValue2coat").innerText = `Total Hardner for Epoxy PU: ${hardenerEpoxyPU.toFixed(2)} Kg`;
+            document.getElementById("totalPUValue2coat").innerText = `Total PU: ${totalPU2coat.toFixed(2)} Kg`;
+            document.getElementById("fillerPUValue2coat").innerText = `Total filler for PU: ${fillerPU2coat.toFixed(2)} Kg`;
+            document.getElementById("EpoxyPUValue2coat").innerText = `Total Epoxy for PU: ${EpoxyPU2coat.toFixed(2)} Kg`;
+            document.getElementById("EpoxyResinPUValue2coat").innerText = `Total Resin for Epoxy PU: ${resinEpoxyPU2coat.toFixed(2)} Kg`;
+            document.getElementById("EpoxyHardenerPUValue2coat").innerText = `Total Hardner for Epoxy PU: ${hardenerEpoxyPU2coat.toFixed(2)} Kg`;
         }
     </script>
 
